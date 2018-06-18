@@ -14,7 +14,7 @@ prompt.get(['Formula Instance ID', 'User Token', 'Organization Token'], function
   console.log(`Using Authorization Header: ${authHeader}`);
   console.log(`Formula Instance ID: ${formulaInstanceId}`);
 
-  const getFailedExecutions = function(){
+  const getExecutions = function(){
     const options =  {
       'method': 'GET',
       'headers': {
@@ -46,7 +46,7 @@ prompt.get(['Formula Instance ID', 'User Token', 'Organization Token'], function
     });
   }
 
-  getFailedExecutions().then(function (response) {
+  getExecutions().then(function (response) {
       console.log("Successfully retrieved executions");
       return response.filter((execution) => {
         const executionTime = new Date(execution.createdDate).getTime();
