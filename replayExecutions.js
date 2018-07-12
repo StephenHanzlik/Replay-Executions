@@ -2,19 +2,25 @@
 //note that executions are only kepts for three days
 //npm install request-promise-native and prompt
 //command line will prompt you for Formula Instance ID, User Token, and Organization Token
-//startTime and endTime are hard coded epoch timestamps used to limit the query 
+//startTime and endTime are hard coded epoch timestamps used to limit the query
 
 const requestPromise = require('request-promise-native');
 const prompt = require('prompt');
 
 const apiUrl = 'https://api.cloud-elements.com/elements/api-v2'
-const startTime = 1529004600000;
-const endTime = 1529020800000;
+//const startTime = 1529004600000;
+//const endTime = 1529020800000;
+//console.log("");
+console.log("Please provide the following information to replay past executions:");
 
 prompt.start();
-prompt.get(['Formula Instance ID', 'User Token', 'Organization Token'], function (err, result) {
+prompt.get(['Environment (staging or production?)','Formula Instance ID', 'User Token', 'Organization Token', 'Start Time (i.e. 2018/01/01 00:00:00)', 'End Time (i.e. 2018/01/01) 00:00:00'], function (err, result) {
   const authHeader = `User ${result['User Token']}, Organization ${result['Organization Token']}`
   const formulaInstanceId = `${result['Formula Instance ID']}`;
+  const startTime = result['Start Time (i.e. 2018/01/01 00:00:00)'];
+  const endTime = result['End Time (i.e. 2018/01/01) 00:00:00'];
+  console.log(startTime);
+  console.log(endTime);
 
   console.log(`Replaying executions from: ${new Date(startTime)} to ${new Date(endTime)}`);
   console.log(`Using Authorization Header: ${authHeader}`);
