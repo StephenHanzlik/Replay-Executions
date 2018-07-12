@@ -1,3 +1,9 @@
+//this script is used to replay executions in bulk for each formula instance
+//note that executions are only kepts for three days
+//npm install request-promise-native and prompt
+//command line will prompt you for Formula Instance ID, User Token, and Organization Token
+//startTime and endTime are hard coded epoch timestamps used to limit the query 
+
 const requestPromise = require('request-promise-native');
 const prompt = require('prompt');
 
