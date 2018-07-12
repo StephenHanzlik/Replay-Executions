@@ -4,6 +4,7 @@
   "description": "",
   "main": "replayExecutions.js",
   "dependencies": {
+    "datejs": "^1.0.0-rc3",
     "prompt": "^1.0.0",
     "request-promise-native": "^1.0.5"
   },
