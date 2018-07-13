@@ -6,8 +6,9 @@ const requestPromise = require('request-promise-native');
 const prompt = require('prompt');
 
 const envs = {
-  production: 'https://api.cloud-elements.com/elements/api-v2',
-  staging: 'https://staging.cloud-elements.com/elements/api-v2'
+  "us-production": 'https://api.cloud-elements.com/elements/api-v2',
+  "uk-production": 'https://api.cloud-elements.co.uk/elements/api-v2/',
+  "staging": 'https://staging.cloud-elements.com/elements/api-v2'
 }
 
 const isValidDate = function(dateString) {
@@ -17,9 +18,9 @@ const isValidDate = function(dateString) {
 console.log("Please provide the following information to replay past executions:");
 
 prompt.start();
-prompt.get(['Environment (staging or production?)','Formula Instance ID', 'User Token', 'Organization Token', 'Start Time UTC(i.e. 2018/01/01 00:00:00)', 'End Time UTC(i.e. 2018/01/01 00:00:00)'], function (err, result) {
+prompt.get(['Environment (staging, us-production, uk-production?)','Formula Instance ID', 'User Token', 'Organization Token', 'Start Time UTC(i.e. 2018/01/01 00:00:00)', 'End Time UTC(i.e. 2018/01/01 00:00:00)'], function (err, result) {
 
-  const apiUrl = envs[result['Environment (staging or production?)']] || envs['production'];
+  const apiUrl = envs[result['Environment (staging, us-production, uk-production?)']] || envs['us-production'];
   const authHeader = `User ${result['User Token']}, Organization ${result['Organization Token']}`
   const formulaInstanceId = `${result['Formula Instance ID']}`;
   const startTime = new Date(result['Start Time UTC(i.e. 2018/01/01 00:00:00)']+'Z');
@@ -76,5 +77,5 @@ prompt.get(['Environment (staging or production?)','Formula Instance ID', 'User 
         console.log(`Error fetching executions: ${err}`)
       })
   })
-  
+
 });
