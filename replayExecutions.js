@@ -1,6 +1,6 @@
-//this script is used to replay executions in bulk for each formula instance
-//note that executions are only kepts for three days
-//command line will prompt you for Formula Instance ID, User Token, and Organization Token
+//This script is used to replay executions in bulk for each formula instance
+//Note that executions are only kepts for three days
+//The command line will prompt you for the information required to replay instances
 
 const requestPromise = require('request-promise-native');
 const prompt = require('prompt');
@@ -30,8 +30,8 @@ prompt.get(['Environment (staging or production?)','Formula Instance ID', 'User 
 
   prompt.get([`Rerunning executions of formula instance ID #${formulaInstanceId} from ${startTime} to ${endTime} on ${apiUrl} using Authorization: ${authHeader}. Enter 'yes' to proceed.`], function(err, result) {
     if(result[`Rerunning executions of formula instance ID #${formulaInstanceId} from ${startTime} to ${endTime} on ${apiUrl} using Authorization: ${authHeader}. Enter 'yes' to proceed.`].toLowerCase() !== 'yes') return console.log('Aborting...');
-    
-    const getExecutions = function(){ 
+
+    const getExecutions = function(){
       const options =  {
         'method': 'GET',
         'headers': {
@@ -74,7 +74,7 @@ prompt.get(['Environment (staging or production?)','Formula Instance ID', 'User 
       })
       .catch(function (err) {
         console.log(`Error fetching executions: ${err}`)
-      })  
+      })
   })
-
+  
 });
