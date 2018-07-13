@@ -1,8 +1,6 @@
 //this script is used to replay executions in bulk for each formula instance
 //note that executions are only kepts for three days
-//npm install request-promise-native and prompt
 //command line will prompt you for Formula Instance ID, User Token, and Organization Token
-//startTime and endTime are hard coded epoch timestamps used to limit the query
 
 const requestPromise = require('request-promise-native');
 const prompt = require('prompt');
@@ -20,9 +18,7 @@ console.log("Please provide the following information to replay past executions:
 
 prompt.start();
 prompt.get(['Environment (staging or production?)','Formula Instance ID', 'User Token', 'Organization Token', 'Start Time UTC(i.e. 2018/01/01 00:00:00)', 'End Time UTC(i.e. 2018/01/01 00:00:00)'], function (err, result) {
-  // const authHeader = `User a/71yZpaoDHME6mCtSL50EVPRAsiunYcteMe1kbo9lo=, Organization UbK7Os/tsG7Q5XCj2hf8hJi6S1fOuy2WZuMR6IEjFyU=`
-  // const formulaInstanceId = `238739`;
-  
+
   const apiUrl = envs[result['Environment (staging or production?)']] || envs['production'];
   const authHeader = `User ${result['User Token']}, Organization ${result['Organization Token']}`
   const formulaInstanceId = `${result['Formula Instance ID']}`;
