@@ -1,5 +1,5 @@
 # Replay-Executions
-A script to replay failed executions
+Replay all failed executions given an environment, auth header, and time frame
 
 # Setup
 
